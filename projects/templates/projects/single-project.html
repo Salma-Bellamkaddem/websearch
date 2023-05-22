@@ -3,5 +3,15 @@
 
 {% block content %}
 <h1>{{project.title}}</h1>
+
+{% for tag in project.tags.all %}
+<span  style ="border: 1px solid #888;padding:1em;">{{tag}}</span>
+{% endfor %}
+<hr>
 <p>{{project.description}}</p>
+<hr>
+<h3>Reviews:</h3>
+{% for review  in project.review_set.all %}
+<p>{{review.body}}</p>
+{% endfor %}
     {%  endblock content %}

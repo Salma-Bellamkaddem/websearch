@@ -1,41 +1,43 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Project
+from .forms import projectForm
 
 
-projectsList = [
-    {
-        'id': '1',
-        'title': 'Ecommerce Website',
-        'description': 'Fully functional ecommerce website'
-      ,'topRated':True
-    },
-    {
-        'id': '2',
-        'title': 'Portfolio Website',
-        'description': 'A personal website to write articles and display work'
-          ,'topRated':False
-    },
-    {
-        'id': '3',
-        'title': 'Social Network',
-        'description': 'An open source project built by the community'
-           ,'topRated':True
-    }
-]
+
 def projects(request): 
     projects = Project.objects.all()
-    print('PROJECT:',project)
-    context= {'projects':projectsList}
+    context= {'projects':projects}
     return render(request,'projects/projects.html',context)
 
 def project(request,pk): 
-    projectObject = None
+    projectObj = Project.objects.get(id=pk)
+    context= {'project':projectObj}
+    return render(request,'projects/single-project.html',context)
 
-    for i  in projectsList:
-        if i['id']==str(pk):
-           projectObject = i
+def createProject(request):
+    form =projectForm()
 
-    return render(request,'projects/single-project.html',{'project':projectObject})
+    if request.method=="POST":
+         form =projectForm(request.POST)
+         if form.is_valid():
+             form.save()
+             return redirect('projects')
 
+
+    context={'form':form}
+    return render(request,'projects/project-form.html',context)
 # Create your views here.
+def  updateProject(request,pk):
+    context={}
+    project=Project.objects.get(id=pk)
+    form =projectForm(instance=project)
+    template ='projects/project-form.html'
+
+    if request.method=='POST':
+        form=projectForm(request.POST,instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')
+    context['form']=form
+    return render(request,template,context)

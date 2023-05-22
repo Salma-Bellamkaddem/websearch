@@ -8,17 +8,17 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
       <th>Title</th>
       <th>Description</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     {% for project  in projects %}
     <tr>
-      <td>{{project.id}}</td>
-      <td>{{project.title}}{%if project.topRated %} <strong>TOP RATED</strong>{%endif%}</td>
+      <td><a href="{% url 'project' project.id %}">{{project.title}}{%if project.topRated %} <strong>TOP RATED</strong>{%endif%}</a></td>
       <td>{{project.description}}</td>
+      <td><a href="{% url 'update-project' project.id  %}">Edit</a></td>
     </tr>
 
     {%endfor %}
