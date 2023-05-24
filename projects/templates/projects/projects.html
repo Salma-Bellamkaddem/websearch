@@ -1,9 +1,10 @@
 {% extends 'main.html' %}
- 
+{% load static %}
 
 
 {% block content %}
-
+<h1>image</h1>
+<img  style ="width: 200px;" src="{% static 'images\profiles\profil.jpeg' %}" alt="image"/>
 <h1>projects</h1>
 <table>
   <thead>

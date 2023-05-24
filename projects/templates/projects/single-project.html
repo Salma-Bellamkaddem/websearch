@@ -2,6 +2,8 @@
 
 
 {% block content %}
+<h1>image</h1>
+<img src="{{project.imageURL}}" style="max-width: 700px;" alt="image">
 <h1>{{project.title}}</h1>
 
 {% for tag in project.tags.all %}
@@ -12,6 +14,8 @@
 <hr>
 <h3>Reviews:</h3>
 {% for review  in project.review_set.all %}
+<p>{{review.created}}</p>
+<p>{{review.value}}</p>
 <p>{{review.body}}</p>
 {% endfor %}
     {%  endblock content %}

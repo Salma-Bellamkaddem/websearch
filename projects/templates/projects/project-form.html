@@ -1,9 +1,9 @@
 {% extends 'main.html'%}
 {% block content %}
-<h1> Create Project</h1>
 
 
-<form method="POST" action="">
+
+<form method="POST" action="" enctype="multipart/form-data">
         {%  csrf_token %} 
         {{form.as_p}}
         <!-- {% for field in form %}
