@@ -8,3 +8,10 @@ class projectForm(ModelForm):
         model = Project
         fields ='__all__'
         exclude=['vote_total','vote_ratio']
+    def __init__(self,*args,**kwargs):
+        super(projectForm,self).__init__(*args,**kwargs)
+        
+        for key, value in self.fields.items():
+            value.widget.attrs.update({'class':'input'})
+        # self.fields['title'].widget.attrs.update({'class':'input'})
+
