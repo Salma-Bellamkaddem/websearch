@@ -16,18 +16,23 @@
   <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
     <!-- Dev Search UI -->
   <link rel="stylesheet" href="{% static 'styles/app.css'%}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- <script src='main.js'></script> -->
-    <style>
-       
-    </style>
+
+  
 </head>
 <body>
     {% include 'navbar.html' %}
     {% block content %}
 
 
-
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
 
 
     {% endblock content %}
