@@ -29,6 +29,7 @@ def createProject(request):
     context={'form':form}
     return render(request,'projects/project-form.html',context)
 # Create your views here.
+
 @login_required(login_url="login")
 def  updateProject(request,pk):
     context={}
@@ -43,6 +44,8 @@ def  updateProject(request,pk):
             return redirect('projects')
     context['form']=form
     return render(request,template,context)
+
+
 @login_required(login_url="login")
 def deleteProject(request,pk):
     project=Project.objects.get(id=pk)

@@ -8,6 +8,8 @@ class projectForm(ModelForm):
         model = Project
         fields ='__all__'
         exclude=['vote_total','vote_ratio']
+
+        
     def __init__(self,*args,**kwargs):
         super(projectForm,self).__init__(*args,**kwargs)
         
