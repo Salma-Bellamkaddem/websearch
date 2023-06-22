@@ -15,14 +15,18 @@ def project(request,pk):
     projectObj = Project.objects.get(id=pk)
     context= {'project':projectObj}
     return render(request,'projects/single-project.html',context)
+
 @login_required(login_url="login")
 def createProject(request):
+    profile =request.user.profile
     form =projectForm()
 
     if request.method=='POST':
          form =projectForm(request.POST,request.FILES)
          if form.is_valid():
-             form.save()
+             project= form.save(commit=False)
+             project.owner = profile
+             project.save()
              return redirect('projects')
 
 
@@ -52,4 +56,4 @@ def deleteProject(request,pk):
     if request.method =='POST':
         project.delete()
         return redirect('projects')
-    return render(request,'projects/delete.html',{'object':project})
+    return render(request,'delete_template.html',{'object':project})

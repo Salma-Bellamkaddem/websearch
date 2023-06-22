@@ -54,7 +54,7 @@
           </div>
           <div class="settings">
             <h3 class="settings__title">Skills</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"><i class="fa fa-plus"></i> Add Skill</a>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url  'create-skill' %}"><i class="fa fa-plus"></i> Add Skill</a>
           </div>
 
           <table class="settings__table">
@@ -65,8 +65,8 @@
                 <p>{{skill.description}} </p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="fas fa-times-circle"></i>
+                <a class="tag tag--pill tag--main settings__btn" href="{%  url 'update-skill' skill.id %}"><i class="fa fa-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'delete-skill' skill.id %}"><i class="fas fa-times-circle"></i>
                   Delete</a>
               </td>
             </tr>
@@ -75,7 +75,7 @@
 
           <div class="settings">
             <h3 class="settings__title">Projects</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"><i class="fa fa-plus"></i> Add Project</a>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="{% url 'create-project' %}"><i class="fa fa-plus"></i> Add Project</a>
           </div>
 
           <table class="settings__table">
@@ -89,8 +89,8 @@
                 <p>{{project.description|slice:"150"}}</p>
               </td>
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="fa fa-edit"></i> Edit</a>
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="fas fa-times-circle"></i>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i class="fa fa-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="{% url  'delete-project' project.id %}"><i class="fas fa-times-circle"></i>
                   Delete</a> 
               </td>
             </tr>
